@@ -1,4 +1,4 @@
-# Sample TODO App Assignment
+# Sample TODO 
 Node & mongo  backend for todo app
 
 ## Requirements 
