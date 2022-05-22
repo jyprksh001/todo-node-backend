@@ -2,7 +2,11 @@ import Task from "../models/Task.js";
 
 export const taskList = async (req, res) => {
     try {
-        const tasks = await Task.find({owner:req.user._id},null,{sort: {createdAt:-1}});
+        let query = {owner:req.user._id}; 
+        if(req.query?.category) query.category = req.query.category;
+        
+        const tasks = await Task.find(query,null,{sort: {createdAt:-1}});
+
         tasks.map(task=> {
             if(task && task.image) task.image= `${req.protocol}://${req.get('host')}/${task.image}`
             return task
